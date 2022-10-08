@@ -3,12 +3,11 @@ import discord
 from discord.ext import commands
 import os
 from dotenv import load_dotenv
-from discord import app_commands
+from discord import Interaction, app_commands
 
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
 
-bot = commands.Bot(command_prefix='!', intents=discord.Intents.all())
 
 class abot(discord.Client):
 	def __init__(self):
@@ -17,10 +16,15 @@ class abot(discord.Client):
 
 	async def on_ready(self):
 		await tree.sync(guild=discord.Object(id=776172679731347538))
-		self.sync = True
+		self.synced = True
 		print('Bot is online')
 
 bot = abot()
 tree = app_commands.CommandTree(bot)
+
+@tree.command(name='ping', description='pings the user', guild=discord.Object(id=776172679731347538))
+async def self(interation = discord.Interaction):
+	await interation.response.send_message('Pong')
+	
 
 bot.run(TOKEN)
