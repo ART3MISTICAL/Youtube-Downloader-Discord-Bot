@@ -23,8 +23,15 @@ bot = abot()
 tree = app_commands.CommandTree(bot)
 
 @tree.command(name='ping', description='pings the user', guild=discord.Object(id=776172679731347538))
-async def self(interation = discord.Interaction):
-	await interation.response.send_message('Pong')
+async def self(i: discord.Interaction):
+	await i.response.send_message('Pong')
 	
+@tree.command(name='download-video', description='download video from youtube', guild=discord.Object(id=776172679731347538))
+@app_commands.choices(choices=[
+    app_commands.Choice(name="720", value="720"),
+    app_commands.Choice(name="360", value="360"),
+    ])
+async def self(i: discord.Interaction, url:str, choices: app_commands.Choice[str]):
+	await i.response.send_message(f'{url} in {choices.value}p')
 
 bot.run(TOKEN)
