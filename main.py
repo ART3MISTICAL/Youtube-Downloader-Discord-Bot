@@ -27,12 +27,12 @@ async def self(i: discord.Interaction):
 	await i.response.send_message('Pong')
 	
 @tree.command(name='download-video', description='download video from youtube', guild=discord.Object(id=776172679731347538))
-@app_commands.choices(choices=[
+@app_commands.choices(res=[
     app_commands.Choice(name="720", value="720p"),
     app_commands.Choice(name="360", value="360p"),
     ])
-async def self(i: discord.Interaction, url:str, choices: app_commands.Choice[str]):
-	await i.response.send_message(f'Click on this link to download\nhttps://youtube-video-downloader.devansharora.repl.co/downloadforbot/?url={url}&res={choices.value}')
+async def self(i: discord.Interaction, url:str, res: app_commands.Choice[str]):
+	await i.response.send_message(f'Click on this link to download\nhttps://youtube-video-downloader.devansharora.repl.co/downloadforbot/?url={url}&res={res.value}')
 
 @tree.command(name='download-music', description='download music from a yt link', guild=discord.Object(id=776172679731347538))
 async def self(i: discord.Interaction, url: str):
