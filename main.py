@@ -38,4 +38,8 @@ async def self(i: discord.Interaction, url:str, res: app_commands.Choice[str]):
 async def self(i: discord.Interaction, url: str):
 	await i.response.send_message(f'Click on this link\nhttps://youtube-video-downloader.devansharora.repl.co/download-music/?url={url}')
 
+@tree.command(name='download-music-playlist', description='download music playlist from yt', guild=discord.Object(id=776172679731347538))
+async def self(i: Interaction, url: str):
+	await i.response.send_message(f'Click on this link and wait for it download, it might take 3-5 mins\nhttps://youtube-video-downloader.devansharora.repl.co/download-playlist/?url={url}')
+
 bot.run(TOKEN)
